@@ -10,45 +10,56 @@ function renderLicenseLink(license) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(licenseName, readmeStr) {
+function renderLicenseSection(licenseName, readmeObj) {
   if (licenseName && licenseName !== "None") {
     licenses.forEach(license => {
       if (license.name === licenseName) {
-        readmeStr += `
+        readmeObj.mainSection += `
 ## Licenses
 This application and repo are protected under [${license.name}](${renderLicenseLink(license)})`
-        readmeStr = readmeStr.replace("{{LICENSE_BADGE}}", license.badge);
-        return readmeStr;
+        readmeObj.title = readmeObj.title.replace("{{LICENSE_BADGE}}", license.badge);
+        readmeObj.tableOfContents.push(readmeObj.currSection.toString() + ". License Information");
+        readmeObj.currSection += 1;
+        return readmeObj;
       };
     });
-    return readmeStr;
+    return readmeObj;
   }
 }
 
-function renderSection(data, sectTitle, readmeStr) {
+function renderSection(data, sectTitle, readMeObj) {
   if (sectTitle && data && data.length > 0) {
-    readmeStr += ("\n## " + formatTitle(sectTitle));
-    readmeStr += ("\n" + data);
+    readMeObj.mainSection += ("\n## " + formatTitle(sectTitle));
+    readMeObj.mainSection += ("\n" + data);
+    readMeObj.tableOfContents.push(readMeObj.currSection.toString() + ". " + formatTitle(sectTitle));
+    readMeObj.currSection += 1;
   }
-  return readmeStr;
+  return readMeObj;
 }
 
 function formatTitle(titleStr) {
-  let formatted = ""
-  for (let word in titleStr.split(" ")) {
-    formatted += word[0].toUpperCase() + word.slice(1);
-  }
-  return formatted;
+  let formatted = []
+  titleStr.split("-").forEach((word) => {
+    formatted.push(word[0].toUpperCase() + word.slice(1));
+  });
+  return formatted.join(" ");
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
-  let readmeStr = "# {{TITLE}} {{LICENSE_BADGE}}";
+  let readmeTitle = "# {{TITLE}} {{LICENSE_BADGE}}";
+  let readMeObj = {
+    title: "",
+    tableOfContents: [],
+    mainSection: "",
+    currSection: 1,
+  };
   for (const sectTitle in answers) {
-    if (sectTitle === "title") readmeStr = readmeStr.replace("{{TITLE}}", sectTitle);
-    else if (sectTitle === "license") readmeStr = renderLicenseSection(answers[sectTitle], readmeStr);
-    else readmeStr = renderSection(answers[sectTitle], sectTitle, readmeStr);
+    if (sectTitle === "title") readMeObj.title = readmeTitle.replace("{{TITLE}}", answers[sectTitle]);
+    else if (sectTitle === "license") readMeObj = renderLicenseSection(answers[sectTitle], readMeObj);
+    else readMeObj = renderSection(answers[sectTitle], sectTitle, readMeObj);
   }
+  const readmeStr = readMeObj.title + "\n" + readMeObj.tableOfContents.join("\n") + "\n" + readMeObj.mainSection
   return readmeStr;
 }
 
