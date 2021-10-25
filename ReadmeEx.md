@@ -3,13 +3,12 @@
 2. [Installation Instructions](#installation-instructions)
 3. License Information
 
-<a name="descr"/>
-## Description
+## <a name="descr">Description</a>
 Description info
 so much describing
 so much wow
-<a name="installation-instructions"/>
-## Installation Instructions
+
+## <a name="installation-instructions">Installation Instructions</a>
 1. Install it
 2. Run it
 3. Prosper
