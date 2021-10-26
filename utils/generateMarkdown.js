@@ -15,10 +15,10 @@ function renderLicenseSection(licenseName, readmeObj) {
     licenses.forEach(license => {
       if (license.name === licenseName) {
         readmeObj.mainSection += `
-## Licenses
+## <a href="license">Licenses</a>
 This application and repo are protected under [${license.name}](${renderLicenseLink(license)})`
         readmeObj.title = readmeObj.title.replace("{{LICENSE_BADGE}}", license.badge);
-        readmeObj.tableOfContents.push(readmeObj.currSection.toString() + ". License Information");
+        readmeObj.tableOfContents.push(readmeObj.currSection.toString() + `. [License Information](#license)`);
         readmeObj.currSection += 1;
         return readmeObj;
       };
@@ -29,9 +29,9 @@ This application and repo are protected under [${license.name}](${renderLicenseL
 
 function renderSection(data, sectTitle, readMeObj) {
   if (sectTitle && data && data.length > 0) {
-    readMeObj.mainSection += ("\n## " + formatTitle(sectTitle));
+    readMeObj.mainSection += (`\n## <a href="${sectTitle}">` + formatTitle(sectTitle) + "</a>");
     readMeObj.mainSection += ("\n" + data);
-    readMeObj.tableOfContents.push(readMeObj.currSection.toString() + ". " + formatTitle(sectTitle));
+    readMeObj.tableOfContents.push(readMeObj.currSection.toString() + ". [" + formatTitle(sectTitle) + `](#${sectTitle})`);
     readMeObj.currSection += 1;
   }
   return readMeObj;

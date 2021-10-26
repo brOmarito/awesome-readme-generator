@@ -14,11 +14,11 @@ module.exports = [
         message: 'Please provide instructions on how to install the application:',
         name: 'installation-instructions',
     },
-    // {
-    //     type: 'editor',
-    //     message: 'Please provide any usage information for the application/repo:',
-    //     name: 'usage-information',
-    // },
+    {
+        type: 'editor',
+        message: 'Please provide any usage information for the application/repo:',
+        name: 'usage-information',
+    },
     {
         type: 'list',
         choices: ["Apache 2.0 License",
@@ -33,22 +33,22 @@ module.exports = [
         "None"],
         name: "license"
     },
-    // {
-    //     type: 'editor',
-    //     message: 'Please outline any contribution guidelines for the repo:',
-    //     name: 'contribution-guidelines',
-    // },
-    // {
-    //     type: 'editor',
-    //     message: 'Please provide any instructions on testing the application:',
-    //     name: 'testing-instructions',
-    // },
-    // {
-    //     type: 'editor',
-    //     message: 'Please provide information on how and where to contact you if there are any questions:',
-    //     name: 'questions',
-    // },
-    // {
+    {
+        type: 'editor',
+        message: 'Please outline any contribution guidelines for the repo:',
+        name: 'contribution-guidelines',
+    },
+    {
+        type: 'editor',
+        message: 'Please provide any instructions on testing the application:',
+        name: 'testing-instructions',
+    },
+    {
+        type: 'editor',
+        message: 'Please provide information on how and where to contact you if there are any questions:',
+        name: 'questions',
+    },
+    {
     //     type: 'input',
     //     message: 'Please provide the filepath for the generated Readme file, or leave this blank for the default location.',
     //     name: 'filepath'
