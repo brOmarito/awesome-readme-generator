@@ -48,7 +48,7 @@ module.exports = [
         message: 'Please provide information on how and where to contact you if there are any questions:',
         name: 'questions',
     },
-    {
+    // {
     //     type: 'input',
     //     message: 'Please provide the filepath for the generated Readme file, or leave this blank for the default location.',
     //     name: 'filepath'
