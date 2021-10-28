@@ -16,4 +16,5 @@ https://watch.screencastify.com/v/2kaqpefBkRWB92sEJl1D
 I want to add the ability for the user to give the directory of where the file should be created as well as the name.
 
 ## Screenshots
+You can find an example of a ReadMe that gets generated <a href="utils/examples/ReadmeEx.md">HERE</a>\
 ![Console with questions](/utils/images/console.PNG)
